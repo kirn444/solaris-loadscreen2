@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Loading...</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- YouTube動画埋め込み -->
+    <div class="video-container">
+        <iframe 
+            src="https://www.youtube.com/embed/YtIkYhEiFuY?autoplay=1&loop=1&playlist=YtIkYhEiFuY&controls=0&mute=0&modestbranding=1"
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen
+            id="bg-video"
+        ></iframe>
+    </div>
+
+    <div class="text">
+        <h1>🚓 Connecting to Solaris City...</h1>
+        <p>しばらくお待ちクだサイ</p>
+    </div>
+
+    <button id="mute-toggle">🔇 Mute</button>
+
+    <script>
+        const iframe = document.getElementById('bg-video');
+        const btn = document.getElementById('mute-toggle');
+
+        let player;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('bg-video');
+        }
+
+        btn.addEventListener('click', () => {
+            if (!player) return;
+            if (player.isMuted()) {
+                player.unMute();
+                btn.textContent = '🔇 Mute';
+            } else {
+                player.mute();
+                btn.textContent = '🔈 Unmute';
+            }
+        });
+    </script>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+</body>
+</html>
